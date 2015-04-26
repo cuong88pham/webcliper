@@ -31,9 +31,12 @@ body{
   right: 0px;
   width:30px;
 }
-.popup button{
+.popup button, .popup a{
   width: 100%;
   outline:none !important;
+}
+.popup h1{
+  font-size: 24px;
 }
 .popup input, .popup input:focus {
   background: #21262C;
