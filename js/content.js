@@ -4,13 +4,15 @@ chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
     var a = document.createElement('a');
     a.href = url;
     var token = msg.user.token;
-
+    var html_content = document.getElementsByTagName('html')[0].innerHTML;
+    html_content = html_content.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "").trim();
     var image_url = $('img')[0].src;
     var data = {title: $('html').find('title').text(),
                 description: $("meta[name='description']").attr('content'),
                 url: url,
                 domain: a.hostname,
-                image: image_url
+                image: image_url,
+                content: html_content
               };
     $.ajax({
       url: 'http://localhost:3000/api/v1/feeds',
