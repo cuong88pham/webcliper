@@ -4,10 +4,14 @@ chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
     var a = document.createElement('a');
     a.href = url;
     var token = msg.user.token;
+
+    var image_url = $('img')[0].src;
     var data = {title: $('html').find('title').text(),
                 description: $("meta[name='description']").attr('content'),
                 url: url,
-                domain: a.hostname};
+                domain: a.hostname,
+                image: image_url
+              };
     $.ajax({
       url: 'http://localhost:3000/api/v1/feeds',
       type: 'post',
