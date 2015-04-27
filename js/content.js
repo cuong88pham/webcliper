@@ -6,7 +6,8 @@ chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
     var token = msg.user.token;
     var html_content = document.getElementsByTagName('html')[0].innerHTML;
     html_content = html_content.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "").trim();
-    var image_url = $('img')[0].src;
+    var image_url = $("img[src$='.jpg'],img[src$='JPG'],img[src$='.jpeg'],img[src$='JPEG']")[0];
+
     var data = {title: $('html').find('title').text(),
                 description: $("meta[name='description']").attr('content'),
                 url: url,
